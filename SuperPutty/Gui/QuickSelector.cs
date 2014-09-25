@@ -189,6 +189,13 @@ namespace SuperPutty.Gui
 
         public DialogResult ShowDialog(IWin32Window parent, QuickSelectorData data, QuickSelectorOptions options)
         {
+            // size and position
+            if (!SuperPuTTY.Settings.QuickSelectorPosition.IsEmpty && SuperPuTTY.Settings.RestoreWindowLocation)
+            {
+                this.StartPosition = FormStartPosition.Manual;
+                this.DesktopBounds = SuperPuTTY.Settings.QuickSelectorPosition;
+            }
+
             // bind data
             this.Options = options;
             this.DataView = new DataView(data.ItemData);
@@ -206,6 +213,11 @@ namespace SuperPutty.Gui
             // update title
             this.UpdateFilter();            
             return ShowDialog(parent);
+        }
+
+        private void QuickSelector_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SuperPuTTY.Settings.QuickSelectorPosition = this.DesktopBounds;
         }
 
         DataView DataView { get; set; }

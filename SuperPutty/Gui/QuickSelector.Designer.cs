@@ -32,12 +32,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBoxData = new System.Windows.Forms.TextBox();
             this.dataGridViewData = new System.Windows.Forms.DataGridView();
-            this.itemDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textColorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceData = new System.Windows.Forms.BindingSource(this.components);
             this.quickSelectorData = new SuperPutty.Gui.QuickSelectorData();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceData)).BeginInit();
@@ -84,11 +85,6 @@
             this.dataGridViewData.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dataGridViewData_CellPainting);
             this.dataGridViewData.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridViewData_KeyDown);
             // 
-            // itemDataBindingSource
-            // 
-            this.itemDataBindingSource.DataMember = "ItemData";
-            this.itemDataBindingSource.DataSource = this.bindingSourceData;
-            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
@@ -115,6 +111,11 @@
             this.textColorDataGridViewTextBoxColumn.ReadOnly = true;
             this.textColorDataGridViewTextBoxColumn.Visible = false;
             // 
+            // itemDataBindingSource
+            // 
+            this.itemDataBindingSource.DataMember = "ItemData";
+            this.itemDataBindingSource.DataSource = this.bindingSourceData;
+            // 
             // bindingSourceData
             // 
             this.bindingSourceData.DataSource = this.quickSelectorData;
@@ -125,6 +126,14 @@
             this.quickSelectorData.DataSetName = "QuickSelectorData";
             this.quickSelectorData.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "TextColor";
+            this.dataGridViewTextBoxColumn1.HeaderText = "TextColor";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
             // QuickSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -132,11 +141,11 @@
             this.ClientSize = new System.Drawing.Size(334, 244);
             this.Controls.Add(this.dataGridViewData);
             this.Controls.Add(this.textBoxData);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "QuickSelector";
-            this.Opacity = 1.0D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "QuickSelector";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.QuickSelector_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemDataBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceData)).EndInit();
@@ -156,6 +165,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn detailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn textColorDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
 
     }
 }
