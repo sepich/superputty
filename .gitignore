@@ -20,4 +20,5 @@ Patches/
 SuperPutty/obj/
 SuperPuttySetup/
 SuperPuttyUnitTests/
-superputty_ssh.reg
+/superputty_ssh.reg
+/SuperPutty.suo
