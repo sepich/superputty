@@ -59,26 +59,36 @@ namespace SuperPutty.Gui
 
         private void textBoxData_KeyDown(object sender, KeyEventArgs e)
         {
+            int i = 0;
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                    if (this.DataView.Count == 1)
-                    {
-                        this.DoSelectItem();
-                    }
+                    this.DoSelectItem();
                     break;
                 case Keys.Escape:
                     this.DoClose();
                     e.Handled = true;
                     break;
                 case Keys.Down:
-                    // focus grid and move selection down by 1 row if possible
-                    this.dataGridViewData.Focus();
-                    if (this.dataGridViewData.SelectedRows[0].Index == 0)
+                    // move selection down by 1 row if possible
+                    if (this.dataGridViewData.Rows.Count > 0)
                     {
-                        if (this.dataGridViewData.Rows.Count > 1)
+                        i = this.dataGridViewData.CurrentRow.Index + 1;
+                        if (i < this.dataGridViewData.Rows.Count)
                         {
-                            this.dataGridViewData.Rows[1].Selected = true;
+                            this.dataGridViewData.CurrentCell = this.dataGridViewData.Rows[i].Cells[0];
+                        }
+                    }
+                    e.Handled = true;
+                    break;
+                case Keys.Up:
+                    // move selection one by 1 row if possible
+                    if (this.dataGridViewData.Rows.Count > 0)
+                    {
+                        i = this.dataGridViewData.CurrentRow.Index - 1;
+                        if (i >= 0)
+                        {
+                            this.dataGridViewData.CurrentCell = this.dataGridViewData.Rows[i].Cells[0];
                         }
                     }
                     e.Handled = true;
@@ -86,7 +96,7 @@ namespace SuperPutty.Gui
                 case Keys.Back:
                     if (e.Control && this.textBoxData.SelectionStart == this.textBoxData.Text.Length)
                     {
-                        // delete word
+                        // delete word to delimeter
                         int idx = this.textBoxData.Text.LastIndexOf("/");
                         if (idx != -1)
                         {
@@ -123,14 +133,8 @@ namespace SuperPutty.Gui
                     this.DoClose();
                     e.Handled = true;
                     break;
-                case Keys.Up:
-                    if (this.dataGridViewData.Rows[0].Selected)
-                    {
-                        this.textBoxData.Focus();
-                        e.Handled = true;
-                    }
-                    break;
                 default:
+                    this.textBoxData.Focus();
                     break;
             }
         }
@@ -223,6 +227,20 @@ namespace SuperPutty.Gui
         DataView DataView { get; set; }
         public QuickSelectorOptions Options { get; private set; }
         public QuickSelectorData.ItemDataRow SelectedItem { get; private set; }
+
+        private void dataGridViewData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                this.dataGridViewData.CurrentCell.Tag = this.dataGridViewData.CurrentCell.Value.ToString();
+                this.dataGridViewData.BeginEdit(true);
+            }
+        }
+
+        private void dataGridViewData_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            this.dataGridViewData.CurrentCell.Value = this.dataGridViewData.CurrentCell.Tag;
+        }
     }
     public class QuickSelectorOptions
     {
