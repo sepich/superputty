@@ -58,12 +58,14 @@
             this.splitContainerUpDown.Size = new System.Drawing.Size(907, 733);
             this.splitContainerUpDown.SplitterDistance = 538;
             this.splitContainerUpDown.TabIndex = 0;
+            this.splitContainerUpDown.TabStop = false;
             // 
             // splitContainerBrowsers
             // 
             this.splitContainerBrowsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerBrowsers.Location = new System.Drawing.Point(0, 0);
             this.splitContainerBrowsers.Name = "splitContainerBrowsers";
+            this.splitContainerBrowsers.TabStop = false;
             // 
             // splitContainerBrowsers.Panel1
             // 
@@ -75,6 +77,7 @@
             this.splitContainerBrowsers.Size = new System.Drawing.Size(907, 538);
             this.splitContainerBrowsers.SplitterDistance = 441;
             this.splitContainerBrowsers.TabIndex = 0;
+            this.splitContainerBrowsers.TabStop = false;
             // 
             // browserViewLocal
             // 
@@ -101,6 +104,7 @@
             this.fileTransferView.Name = "fileTransferView";
             this.fileTransferView.Size = new System.Drawing.Size(907, 191);
             this.fileTransferView.TabIndex = 0;
+            this.fileTransferView.TabStop = false;
             // 
             // PscpBrowserPanel
             // 
@@ -108,6 +112,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(913, 739);
             this.Controls.Add(this.splitContainerUpDown);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "PscpBrowserPanel";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Text = "PscpBrowserPanel";

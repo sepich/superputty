@@ -94,6 +94,7 @@ namespace SuperPutty.Scp
             bool enabled = state == BrowserState.Ready;
             this.tsBtnRefresh.Enabled = enabled;
             this.listViewFiles.Enabled = enabled;
+            if (enabled) this.listViewFiles.Focus();
         }
 
         void PopulateListView(BindingList<BrowserFileInfo> files)
@@ -407,6 +408,30 @@ namespace SuperPutty.Scp
         IBrowserPresenter Presenter { get; set; }
         BrowserFileInfoComparer Comparer { get; set; }
         public bool ConfirmTransfer { get; set; }
+
+        private void listViewFiles_KeyDown(object sender, KeyEventArgs e)
+        {
+            BrowserFileInfo bfi = null;
+            switch (e.KeyCode){
+            case Keys.Enter:
+                if (this.listViewFiles.SelectedItems.Count != 0)
+                {
+                    bfi = (BrowserFileInfo)this.listViewFiles.SelectedItems[0].Tag;
+                    if (bfi.Type == FileType.Directory || bfi.Type == FileType.ParentDirectory)
+                    {
+                        this.Presenter.LoadDirectory(bfi);
+                    }
+                }
+                break;
+            case Keys.Back:
+                bfi = (BrowserFileInfo)this.listViewFiles.Items[0].Tag;
+                if (bfi.Type == FileType.ParentDirectory)
+                {
+                    this.Presenter.LoadDirectory(bfi);
+                }
+                break;
+            }
+        }
 
 
     }

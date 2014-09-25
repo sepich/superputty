@@ -123,6 +123,7 @@
             this.listViewFiles.DragOver += new System.Windows.Forms.DragEventHandler(this.listViewFiles_DragOver);
             this.listViewFiles.DragLeave += new System.EventHandler(this.listViewFiles_DragLeave);
             this.listViewFiles.DoubleClick += new System.EventHandler(this.listViewFiles_DoubleClick);
+            this.listViewFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewFiles_KeyDown);
             // 
             // columnHeaderName
             // 
@@ -187,6 +188,7 @@
             this.txtPath.ReadOnly = true;
             this.txtPath.Size = new System.Drawing.Size(594, 20);
             this.txtPath.TabIndex = 0;
+            this.txtPath.TabStop = false;
             this.txtPath.Text = "<Path>";
             // 
             // toolStripTools
