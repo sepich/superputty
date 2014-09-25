@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBoxData = new System.Windows.Forms.TextBox();
             this.dataGridViewData = new System.Windows.Forms.DataGridView();
             this.itemDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -40,6 +41,7 @@
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textColorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemDataBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceData)).BeginInit();
@@ -70,7 +72,8 @@
             this.dataGridViewData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
             this.detailDataGridViewTextBoxColumn,
-            this.textColorDataGridViewTextBoxColumn});
+            this.textColorDataGridViewTextBoxColumn,
+            this.pathDataGridViewTextBoxColumn});
             this.dataGridViewData.DataSource = this.itemDataBindingSource;
             this.dataGridViewData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewData.Location = new System.Drawing.Point(0, 20);
@@ -122,7 +125,7 @@
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.FillWeight = 30F;
+            this.nameDataGridViewTextBoxColumn.FillWeight = 70F;
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             // 
@@ -131,10 +134,11 @@
             this.detailDataGridViewTextBoxColumn.DataPropertyName = "Detail";
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.detailDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.detailDataGridViewTextBoxColumn.FillWeight = 70F;
+            this.detailDataGridViewTextBoxColumn.FillWeight = 30F;
             this.detailDataGridViewTextBoxColumn.HeaderText = "Detail";
             this.detailDataGridViewTextBoxColumn.Name = "detailDataGridViewTextBoxColumn";
             this.detailDataGridViewTextBoxColumn.ReadOnly = true;
+            this.detailDataGridViewTextBoxColumn.Visible = false;
             // 
             // textColorDataGridViewTextBoxColumn
             // 
@@ -143,6 +147,16 @@
             this.textColorDataGridViewTextBoxColumn.Name = "textColorDataGridViewTextBoxColumn";
             this.textColorDataGridViewTextBoxColumn.ReadOnly = true;
             this.textColorDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // pathDataGridViewTextBoxColumn
+            // 
+            this.pathDataGridViewTextBoxColumn.DataPropertyName = "Path";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.pathDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.pathDataGridViewTextBoxColumn.FillWeight = 30F;
+            this.pathDataGridViewTextBoxColumn.HeaderText = "Path";
+            this.pathDataGridViewTextBoxColumn.Name = "pathDataGridViewTextBoxColumn";
+            this.pathDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // QuickSelector
             // 
@@ -177,6 +191,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn detailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn textColorDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pathDataGridViewTextBoxColumn;
 
     }
 }

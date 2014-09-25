@@ -350,7 +350,6 @@ namespace SuperPutty
 
         private void openSessionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            QuickSelector q = new QuickSelector();
             QuickSelectorData data = new QuickSelectorData();
             data.CaseSensitive = SuperPuTTY.Settings.QuickSelectorCaseSensitiveSearch;
 
@@ -360,7 +359,8 @@ namespace SuperPutty
                     sd.SessionName,
                     sd.SessionId,
                     sd.Proto == ConnectionProtocol.Cygterm || sd.Proto == ConnectionProtocol.Mintty ? Color.Blue : Color.Black,
-                    null);
+                    null,
+                    "/" + sd.SessionId.Substring(0, sd.SessionId.Length - sd.SessionName.Length - 1));
             }
 
             QuickSelectorOptions opt = new QuickSelectorOptions();
@@ -376,7 +376,6 @@ namespace SuperPutty
 
         private void switchSessionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            QuickSelector q = new QuickSelector();
             QuickSelectorData data = new QuickSelectorData();
             data.CaseSensitive = SuperPuTTY.Settings.QuickSelectorCaseSensitiveSearch;
 
@@ -390,7 +389,8 @@ namespace SuperPutty
                         panel.Text,
                         sd.SessionId,
                         sd.Proto == ConnectionProtocol.Cygterm || sd.Proto == ConnectionProtocol.Mintty ? Color.Blue : Color.Black,
-                        panel);
+                        panel,
+                        "/" + sd.SessionId.Substring(0, sd.SessionId.Length - sd.SessionName.Length - 1));
                 }
             }
 

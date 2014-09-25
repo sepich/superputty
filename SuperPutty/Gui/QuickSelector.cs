@@ -45,7 +45,7 @@ namespace SuperPutty.Gui
             else
             {                
                 this.DataView.RowFilter = string.Format(
-                    "[Name] LIKE '%{0}%' OR [Detail] LIKE '%{0}%'", this.textBoxData.Text.Replace("[", "[[]"));
+                    "[Name] LIKE '%{0}%' OR [Path] LIKE '{0}%'", this.textBoxData.Text.Replace("[", "[[]"));
             }
             this.Text = string.Format("{0} [{1}]", this.Options.BaseText, this.DataView.Count);
         }
@@ -208,10 +208,10 @@ namespace SuperPutty.Gui
 
             // configure grid
             this.nameDataGridViewTextBoxColumn.Visible = this.Options.ShowNameColumn;
-            this.detailDataGridViewTextBoxColumn.Visible = this.Options.ShowDetailColumn;
+            this.pathDataGridViewTextBoxColumn.Visible = this.Options.ShowDetailColumn;
             if (this.Options.ShowDetailColumn && !this.Options.ShowNameColumn)
             {
-                this.detailDataGridViewTextBoxColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                this.pathDataGridViewTextBoxColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             }
 
             // update title
