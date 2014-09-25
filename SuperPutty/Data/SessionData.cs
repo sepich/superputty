@@ -296,7 +296,8 @@ namespace SuperPutty.Data
                 {
                     // backup
                     string fileBaseName = Path.GetFileNameWithoutExtension(fileName);
-                    string dirName = Path.GetDirectoryName(fileName);
+                    string dirName = Path.Combine( Path.GetDirectoryName(fileName), "backup" );
+                    Directory.CreateDirectory(dirName); //checks and creates only if not exist
                     string backupName = Path.Combine(dirName, string.Format("{0}.{1:yyyyMMdd_hhmmss}.XML", fileBaseName, DateTime.Now));
                     File.Copy(fileName, backupName, true);
 
@@ -306,7 +307,7 @@ namespace SuperPutty.Data
                     oldFiles.Reverse();
                     if (oldFiles.Count > count)
                     {
-                        for (int i = 20; i < oldFiles.Count; i++)
+                        for (int i = count; i < oldFiles.Count; i++)
                         {
                             Log.InfoFormat("Cleaning up old file, {0}", oldFiles[i]);
                             File.Delete(oldFiles[i]);
