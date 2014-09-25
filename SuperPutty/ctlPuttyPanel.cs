@@ -131,7 +131,7 @@ namespace SuperPutty
 
         void CreateMenu()
         {
-            this.newSessionToolStripMenuItem.Enabled = SuperPuTTY.Settings.PuttyPanelShowNewSessionMenu;
+            this.newSessionToolStripMenuItem.Visible = SuperPuTTY.Settings.PuttyPanelShowNewSessionMenu;
             if (SuperPuTTY.Settings.PuttyPanelShowNewSessionMenu)
             {
                 this.contextMenuStrip1.SuspendLayout();
