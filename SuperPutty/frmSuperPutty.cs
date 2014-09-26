@@ -459,7 +459,7 @@ namespace SuperPutty
             this.alwaysOnTopToolStripMenuItem.Checked = SuperPuTTY.Settings.AlwaysOnTop;
 
             this.menuStrip1.Visible = SuperPuTTY.Settings.ShowMenuBar;
-            if (this.menuStrip1.Visible)
+            if (SuperPuTTY.Settings.ShowMenuBar)
             {
                 this.menuStrip1.Stretch = true;
                 this.menuStrip1.AutoSize = true;
@@ -1535,7 +1535,7 @@ namespace SuperPutty
         private void menuStrip1_MenuDeactivate(object sender, EventArgs e)
         {
             menuStrip1.Visible = SuperPuTTY.Settings.ShowMenuBar;
-            if (this.menuStrip1.Visible)
+            if (SuperPuTTY.Settings.ShowMenuBar)
             {
                 this.menuStrip1.Stretch = true;
                 this.menuStrip1.AutoSize = true;
