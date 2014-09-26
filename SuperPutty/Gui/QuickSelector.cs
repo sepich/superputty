@@ -45,7 +45,7 @@ namespace SuperPutty.Gui
             else
             {                
                 this.DataView.RowFilter = string.Format(
-                    "[Name] LIKE '%{0}%' OR [Path] LIKE '{0}%'", this.textBoxData.Text.Replace("[", "[[]"));
+                    "[Name] LIKE '{0}%' OR [Path] LIKE '{0}%'", this.textBoxData.Text.Replace("[", "[[]"));
             }
             this.Text = string.Format("{0} [{1}]", this.Options.BaseText, this.DataView.Count);
         }
