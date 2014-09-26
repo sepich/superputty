@@ -548,6 +548,7 @@
             this.dockPanel1.Skin = dockPanelSkin1;
             this.dockPanel1.TabIndex = 3;
             this.dockPanel1.ActiveDocumentChanged += new System.EventHandler(this.dockPanel1_ActiveDocumentChanged);
+            this.dockPanel1.ActiveAutoHideContentChanged += new System.EventHandler(this.dockPanel1_ActiveAutoHideContentChanged);
             // 
             // toolStripContainer1
             // 

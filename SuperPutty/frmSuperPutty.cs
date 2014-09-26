@@ -483,6 +483,7 @@ namespace SuperPutty
             {
                 this.sessions.ShowWindow(DockState.DockRight);
             }
+            this.sessions.Instance.FocustxtSearch();
         }
 
         private void logViewerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1598,5 +1599,12 @@ namespace SuperPutty
             Mixed
         }
 
+        private void dockPanel1_ActiveAutoHideContentChanged(object sender, EventArgs e)
+        {            
+            if (this.sessions.Instance != null && this.DockPanel.ActiveAutoHideContent == this.sessions.Instance)
+            {
+                this.sessions.Instance.FocustxtSearch();
+            }
+        }
     }
 }

@@ -31,6 +31,14 @@ namespace SuperPutty.Utils
                 this.Instance.Show(DockPanel, dockState);
                 SuperPuTTY.ReportStatus("Showing " + this.Name);
             }
+            else if (this.Instance.DockState == DockState.DockLeftAutoHide || this.Instance.DockState == DockState.DockRightAutoHide || this.Instance.DockState == DockState.DockBottomAutoHide)
+            {
+                //fix for >v2.7.0
+                //http://stackoverflow.com/questions/13843604/calling-up-dockpanel-suites-autohidden-dockcontent-programmatically
+                this.DockPanel.ActiveAutoHideContent = this.Instance;
+                this.Instance.Focus();
+                SuperPuTTY.ReportStatus("Unhiding " + this.Name);
+            }
             else
             {
                 this.Instance.Show(DockPanel);

@@ -958,6 +958,11 @@ namespace SuperPutty
             public string Filter { get; set; }
             public Regex Regex { get; set; }
         }
+
+        public void FocustxtSearch()
+        {
+            if (this.panelSearch.Visible) this.txtSearch.Focus();
+        }
         #endregion
 
         #region Key Handling
