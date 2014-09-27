@@ -66,6 +66,7 @@ namespace SuperPutty
             this.Text = session.SessionName;
             this.TabText = session.SessionName;
             this.TextOverride = session.SessionName;
+            this.inactive = false;
 
             CreatePanel();
             AdjustMenu();
@@ -113,7 +114,7 @@ namespace SuperPutty
             this.ResumeLayout();
         }
 
-        void AdjustMenu()
+        public void AdjustMenu()
         {
             // for mintty, disable the putty menu items
             if (this.Session.Proto == ConnectionProtocol.Mintty)
@@ -127,6 +128,40 @@ namespace SuperPutty
                 this.clearScrollbackToolStripMenuItem.Visible = false;
                 this.resetTerminalToolStripMenuItem.Visible = false;
             }
+            // for putty/kitty inactive tab
+            else {
+                if (this.inactive)
+                {
+                    this.duplicateSessionToolStripMenuItem.Visible = false;
+                    this.toolStripSeparator1.Visible = false;
+                    this.renameTabToolStripMenuItem.Visible = false;
+                    this.refreshToolStripMenuItem.Visible = false;
+                    this.acceptCommandsToolStripMenuItem.Visible = false;
+                    this.toolStripPuttySep1.Visible = false;
+                    this.changeSettingsToolStripMenuItem.Visible = false;
+                    this.clearScrollbackToolStripMenuItem.Visible = false;
+                    this.resetTerminalToolStripMenuItem.Visible = false;
+                    this.toolStripSeparator3.Visible = false;
+                    this.aboutPuttyToolStripMenuItem.Visible = false;
+                    this.toolStripSeparator4.Visible = false;
+                }
+                else
+                {
+                    this.duplicateSessionToolStripMenuItem.Visible = true;
+                    this.toolStripSeparator1.Visible = true;
+                    this.renameTabToolStripMenuItem.Visible = true;
+                    this.refreshToolStripMenuItem.Visible = true;
+                    this.acceptCommandsToolStripMenuItem.Visible = true;
+                    this.toolStripPuttySep1.Visible = true;
+                    this.changeSettingsToolStripMenuItem.Visible = true;
+                    this.clearScrollbackToolStripMenuItem.Visible = true;
+                    this.resetTerminalToolStripMenuItem.Visible = true;
+                    this.toolStripSeparator3.Visible = true;
+                    this.aboutPuttyToolStripMenuItem.Visible = true;
+                    this.toolStripSeparator4.Visible = true;
+                }
+            }
+
         }
 
         void CreateMenu()
@@ -395,6 +430,7 @@ namespace SuperPutty
         public ApplicationPanel AppPanel { get { return this.m_AppPanel; } }
         public ctlPuttyPanel previousPanel { get; set; }
         public ctlPuttyPanel nextPanel { get; set; }
+        public bool inactive { get; set; }
 
         public static ctlPuttyPanel NewPanel(SessionData sessionData)
         {

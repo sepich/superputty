@@ -258,11 +258,12 @@ DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
 
         private void UpdateTitle()
         {
+            ctlPuttyPanel panel = (ctlPuttyPanel)this.Parent;
             int length = NativeMethods.SendMessage(m_AppWin, NativeMethods.WM_GETTEXTLENGTH, 0, 0) + 1;
             StringBuilder sb = new StringBuilder(length + 1);
             NativeMethods.SendMessage(m_AppWin, NativeMethods.WM_GETTEXT, sb.Capacity, sb);
             string controlText = sb.ToString();
-            string parentText = ((ctlPuttyPanel)this.Parent).TextOverride;
+            string parentText = panel.TextOverride;
 
             switch ((SuperPutty.frmSuperPutty.TabTextBehavior)Enum.Parse(typeof(frmSuperPutty.TabTextBehavior), SuperPuTTY.Settings.TabTextBehavior))
             {
@@ -275,6 +276,36 @@ DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
                 case frmSuperPutty.TabTextBehavior.Mixed:
                     this.Parent.Text = parentText + ": " + controlText;
                     break;
+            }
+            
+            // putty/kitty tab became inactive
+            if( controlText.EndsWith("TTY (inactive)") ){
+                Icon icon = null;
+                string imageKey = (SuperPuTTY.Images.Images.ContainsKey("dead")) ? "dead" : null;
+                try
+                {
+                    Image img = SuperPuTTY.Images.Images[imageKey];
+                    Bitmap bmp = img as Bitmap;
+                    if (bmp != null)
+                    {
+                        icon = Icon.FromHandle(bmp.GetHicon());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("Error getting icon for dead tab", ex);
+                }
+                panel.inactive = true;
+                panel.Icon = icon;                
+                panel.AdjustMenu();  
+                panel.Pane.Refresh();
+            }
+            else if(panel.inactive)
+            {
+                panel.inactive = false;
+                panel.Icon = SuperPuTTY.GetIconForSession(panel.Session);                
+                panel.AdjustMenu();
+                panel.Pane.Refresh();
             }
         }
 
