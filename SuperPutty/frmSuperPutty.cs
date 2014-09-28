@@ -1192,6 +1192,12 @@ namespace SuperPutty
                         }
                     }
 
+                    // restart session if this tab is inactive and Enter pressed
+                    if (keys == Keys.Return && ((ctlPuttyPanel)this.DockPanel.ActiveDocument).inactive)
+                    {
+                        ((ctlPuttyPanel)this.DockPanel.ActiveDocument).restartSession();
+                    }
+
                     // misc action handling (eat keyup and down)
                     if (SuperPuTTY.Settings.EnableKeyboadShortcuts &&
                         isKeyDown &&

@@ -505,6 +505,11 @@ namespace SuperPutty
             //SuperPuTTY.MainForm.BringToFront();
         }
 
+        public void restartSession()
+        {
+            puTTYMenuTSMI_Click(restartSessionToolStripMenuItem, null);
+        }
+
         public bool AcceptCommands
         {
             get { return this.acceptCommandsToolStripMenuItem.Checked;  }
