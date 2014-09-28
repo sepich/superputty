@@ -509,16 +509,16 @@
             tabGradient1.TextColor = System.Drawing.SystemColors.ControlDarkDark;
             autoHideStripSkin1.TabGradient = tabGradient1;
             dockPanelSkin1.AutoHideStripSkin = autoHideStripSkin1;
-            tabGradient2.EndColor = System.Drawing.SystemColors.ControlLightLight;
+            tabGradient2.EndColor = System.Drawing.SystemColors.ControlLight;
             tabGradient2.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            tabGradient2.StartColor = System.Drawing.Color.LightSteelBlue;
+            tabGradient2.StartColor = System.Drawing.SystemColors.ControlLight;
             tabGradient2.TextColor = System.Drawing.SystemColors.ControlText;
             dockPaneStripGradient1.ActiveTabGradient = tabGradient2;
             dockPanelGradient2.EndColor = System.Drawing.SystemColors.Control;
             dockPanelGradient2.StartColor = System.Drawing.SystemColors.Control;
             dockPaneStripGradient1.DockStripGradient = dockPanelGradient2;
-            tabGradient3.EndColor = System.Drawing.SystemColors.ControlLight;
-            tabGradient3.StartColor = System.Drawing.SystemColors.ControlLight;
+            tabGradient3.EndColor = System.Drawing.SystemColors.ControlLightLight;
+            tabGradient3.StartColor = System.Drawing.SystemColors.ControlLightLight;
             tabGradient3.TextColor = System.Drawing.SystemColors.ControlText;
             dockPaneStripGradient1.InactiveTabGradient = tabGradient3;
             dockPaneStripSkin1.DocumentGradient = dockPaneStripGradient1;
@@ -621,7 +621,6 @@
             this.tsCommands.Location = new System.Drawing.Point(0, 24);
             this.tsCommands.Name = "tsCommands";
             this.tsCommands.Size = new System.Drawing.Size(1008, 25);
-            this.tsCommands.Stretch = true;
             this.tsCommands.TabIndex = 6;
             // 
             // tbTextSendCommands
@@ -695,7 +694,6 @@
             this.tsConnect.Location = new System.Drawing.Point(0, 49);
             this.tsConnect.Name = "tsConnect";
             this.tsConnect.Size = new System.Drawing.Size(1008, 25);
-            this.tsConnect.Stretch = true;
             this.tsConnect.TabIndex = 5;
             this.tsConnect.Text = "Connect";
             // 

@@ -644,5 +644,29 @@ namespace SuperPutty.Properties {
                 this["AutoUpdateCheck"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point ConnectionBarLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["ConnectionBarLocation"]));
+            }
+            set {
+                this["ConnectionBarLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point CommandBarLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["CommandBarLocation"]));
+            }
+            set {
+                this["CommandBarLocation"] = value;
+            }
+        }
     }
 }

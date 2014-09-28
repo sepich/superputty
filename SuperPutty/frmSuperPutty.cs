@@ -89,10 +89,6 @@ namespace SuperPutty
             dlgFindPutty.PuttyCheck();
 
             InitializeComponent();
-            // force toolbar locations...designer likes to flip them around
-            this.tsConnect.Location = new System.Drawing.Point(0, 24);
-            this.tsCommands.Location = new System.Drawing.Point(0, 49);
-
             if (this.DesignMode) return;
 
             // setup connection bar
@@ -145,6 +141,9 @@ namespace SuperPutty
             if (SuperPuTTY.Settings.RestoreWindowLocation)
             {
                 FormUtils.RestoreFormPositionAndState(this, SuperPuTTY.Settings.WindowPosition, SuperPuTTY.Settings.WindowState);
+                // restore toolbar locations
+                this.tsConnect.Location = SuperPuTTY.Settings.ConnectionBarLocation;
+                this.tsCommands.Location = SuperPuTTY.Settings.CommandBarLocation;
             }
 
             this.ResizeEnd += new EventHandler(frmSuperPutty_ResizeEnd);
@@ -211,6 +210,8 @@ namespace SuperPutty
             {
                 SuperPuTTY.Settings.WindowPosition = this.lastNormalDesktopBounds;
                 SuperPuTTY.Settings.WindowState = this.WindowState == FormWindowState.Minimized ? this.WindowState = this.lastNonMinimizedWindowState : this.WindowState;
+                SuperPuTTY.Settings.CommandBarLocation = this.tsCommands.Location;
+                SuperPuTTY.Settings.ConnectionBarLocation = this.tsConnect.Location;
                 SuperPuTTY.Settings.Save();
             }
 
