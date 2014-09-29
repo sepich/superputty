@@ -1193,7 +1193,8 @@ namespace SuperPutty
                     }
 
                     // restart session if this tab is inactive and Enter pressed
-                    if (keys == Keys.Return && ((ctlPuttyPanel)this.DockPanel.ActiveDocument).inactive)
+                    if (keys == Keys.Return && this.DockPanel != null && this.DockPanel.ActiveDocument != null && 
+                       ((ctlPuttyPanel)this.DockPanel.ActiveDocument).inactive)
                     {
                         ((ctlPuttyPanel)this.DockPanel.ActiveDocument).restartSession();
                     }
