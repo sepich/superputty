@@ -159,6 +159,9 @@
     <Compile Include="ToolWindowEx.Designer.cs">
       <DependentUpon>ToolWindowEx.cs</DependentUpon>
     </Compile>
+    <Compile Include="TreeViewMS.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Utils\ChildWindowFocusHelper.cs" />
     <Compile Include="Utils\CommandData.cs" />
     <Compile Include="Utils\CygtermStartInfo.cs" />

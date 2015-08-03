@@ -311,35 +311,27 @@ namespace SuperPutty
         }
 
         /// <summary>
-        /// Forces a node to be selected when right clicked, this assures the context menu will be operating
-        /// on the proper session entry.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                treeView1.SelectedNode = treeView1.GetNodeAt(e.X, e.Y);
-            }          
-        }
-
-        /// <summary>
         /// Delete a session entry from the treeview and the registry
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SessionData session = (SessionData)treeView1.SelectedNode.Tag;
-            if (MessageBox.Show("Are you sure you want to delete " + session.SessionName + "?", "Delete Session?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                //session.RegistryRemove(session.SessionName);
-                treeView1.SelectedNode.Remove();
-                SuperPuTTY.RemoveSession(session.SessionId);
-                SuperPuTTY.SaveSessions();
-                //m_SessionsById.Remove(session.SessionId);
+          var del = new List<TreeNode>();
+          var parent = treeView1.SelectedNode.Parent;
+          foreach (TreeNode node in treeView1.SelectedNodes) {
+            if(!IsSessionNode(node)) continue;
+            SessionData session = (SessionData)node.Tag;
+            if (MessageBox.Show("Are you sure you want to delete " + session.SessionName + "?", "Delete Session?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) {
+              //session.RegistryRemove(session.SessionName);
+              del.Add(node);
+              SuperPuTTY.RemoveSession(session.SessionId);
+              SuperPuTTY.SaveSessions();
+              //m_SessionsById.Remove(session.SessionId);
             }
+          }
+          treeView1.SelectedNode = parent;
+          foreach (TreeNode node in del) node.Remove();
         }
 
         /// <summary>
@@ -361,7 +353,11 @@ namespace SuperPutty
         /// <param name="e"></param>
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            treeView1_NodeMouseDoubleClick(null, null);
+          foreach (TreeNode node in treeView1.SelectedNodes)
+            if (IsSessionNode(node)) {
+              SessionData sessionData = (SessionData)node.Tag;
+              SuperPuTTY.OpenPuttySession(sessionData);
+            }
         }
 
         /// <summary>
@@ -371,20 +367,19 @@ namespace SuperPutty
         /// <param name="e"></param>
         private void connectExternalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TreeNode node = this.treeView1.SelectedNode;
+          foreach (TreeNode node in treeView1.SelectedNodes)
             if (IsSessionNode(node))
             {
-                SessionData sessionData = (SessionData)node.Tag;
-                PuttyStartInfo startInfo = new PuttyStartInfo(sessionData);
-                startInfo.StartStandalone();
+              SessionData sessionData = (SessionData)node.Tag;
+              PuttyStartInfo startInfo = new PuttyStartInfo(sessionData);
+              startInfo.StartStandalone();
             }
         }
 
         private void connectInNewSuperPuTTYToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TreeNode node = this.treeView1.SelectedNode;
-            if (IsSessionNode(node))
-            {
+          foreach (TreeNode node in treeView1.SelectedNodes)
+            if (IsSessionNode(node)) {
                 SuperPuTTY.LoadSessionInNewInstance(((SessionData)node.Tag).SessionId);
             }
         }
@@ -528,6 +523,16 @@ namespace SuperPutty
             fileBrowserToolStripMenuItem.Enabled = SuperPuTTY.IsScpEnabled;
 
             connectInNewSuperPuTTYToolStripMenuItem.Enabled = !SuperPuTTY.Settings.SingleInstanceMode;
+            if (treeView1.SelectedNodes.Count > 1) {
+              createLikeToolStripMenuItem.Enabled = false;
+              settingsToolStripMenuItem.Enabled = false;
+              fileBrowserToolStripMenuItem.Enabled = false;
+            }
+            else {
+              createLikeToolStripMenuItem.Enabled = true;
+              settingsToolStripMenuItem.Enabled = true;
+              fileBrowserToolStripMenuItem.Enabled = true;
+            }
         }
 
         #region Node helpers
