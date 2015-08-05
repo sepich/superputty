@@ -929,7 +929,7 @@ namespace SuperPutty
                     Port = connStr.Port.GetValueOrDefault(dlgEditSession.GetDefaultPort(proto)),
                     Username = this.tbTxtBoxLogin.Text,
                     Password = this.tbTxtBoxPassword.Text,
-                    PuttySession = (string)this.tbComboSession.SelectedItem
+                    PuttySession = this.tbComboSession.Text.Trim()
                 };
                 SuperPuTTY.OpenSession(new SessionDataStartInfo { Session = session, UseScp = isScp });
                 oldHostName = this.tbTxtBoxHost.Text;
@@ -950,13 +950,13 @@ namespace SuperPutty
                 this.tbComboProtocol.SelectedItem = ConnectionProtocol.SSH.ToString();
             }
 
-            String prevSession = (string)this.tbComboSession.SelectedItem;
+            String prevSession = this.tbComboSession.Text;
             this.tbComboSession.Items.Clear();
             foreach (string sessionName in PuttyDataHelper.GetSessionNames())
             {
                 this.tbComboSession.Items.Add(sessionName);
             }
-            this.tbComboSession.SelectedItem = prevSession ?? PuttyDataHelper.SessionEmptySettings;
+            this.tbComboSession.Text = prevSession ?? PuttyDataHelper.SessionEmptySettings;
         }
 
         private void toolStripButtonClearFields_Click(object sender, EventArgs e)

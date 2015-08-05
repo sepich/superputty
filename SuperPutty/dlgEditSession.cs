@@ -99,6 +99,11 @@ namespace SuperPutty
                         break;
                     }
                 }
+                //KiTTY local session, not discovered in registry
+                if (this.comboBoxPuttyProfile.Text != Session.PuttySession) {
+                  this.comboBoxPuttyProfile.Items.Add(Session.PuttySession);
+                  this.comboBoxPuttyProfile.SelectedItem = Session.PuttySession;
+                }
 
                 this.buttonSave.Enabled = true;
             }
