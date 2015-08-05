@@ -418,6 +418,10 @@ namespace SuperPutty
             }
         }
 
+        private void copyTabNameToolStripMenuItem_Click(object sender, EventArgs e) {
+          Clipboard.SetText(this.TextOverride);
+        }
+
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.m_AppPanel != null)
