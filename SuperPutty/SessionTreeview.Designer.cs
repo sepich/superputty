@@ -30,7 +30,7 @@
         {
       this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SessionTreeview));
-      this.treeView1 = new TreeViewMS();
+      this.treeView1 = new SuperPutty.TreeViewMS();
       this.imageList1 = new System.Windows.Forms.ImageList(this.components);
       this.contextMenuStripAddTreeItem = new System.Windows.Forms.ContextMenuStrip(this.components);
       this.newSessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,12 +77,14 @@
       this.treeView1.Margin = new System.Windows.Forms.Padding(5);
       this.treeView1.Name = "treeView1";
       this.treeView1.SelectedImageIndex = 0;
+      this.treeView1.SelectedNodes = ((System.Collections.ArrayList)(resources.GetObject("treeView1.SelectedNodes")));
       this.treeView1.ShowLines = false;
       this.treeView1.ShowNodeToolTips = true;
       this.treeView1.ShowRootLines = false;
       this.treeView1.Size = new System.Drawing.Size(430, 478);
       this.treeView1.TabIndex = 0;
       this.treeView1.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView1_ItemDrag);
+      this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
       this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
       this.treeView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeView1_DragDrop);
       this.treeView1.DragOver += new System.Windows.Forms.DragEventHandler(this.treeView1_DragOver);

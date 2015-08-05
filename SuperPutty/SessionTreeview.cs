@@ -989,6 +989,15 @@ namespace SuperPutty
         }
         #endregion
 
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {          
+          if (e.Button == System.Windows.Forms.MouseButtons.Right) {
+            var node = treeView1.GetNodeAt(e.Location);
+            if (treeView1.SelectedNodes.Count > 0 && !treeView1.SelectedNodes.Contains(node)) {
+              treeView1.SelectedNode = node;
+            }
+          }
+        }
+
     }
 
 }
