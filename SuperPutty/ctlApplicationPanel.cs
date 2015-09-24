@@ -279,7 +279,7 @@ DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
             }
             
             // putty/kitty tab became inactive
-            if( controlText.EndsWith("TTY (inactive)") ){
+            if (!panel.inactive && controlText.EndsWith("TTY (inactive)")){
                 Icon icon = null;
                 string imageKey = (SuperPuTTY.Images.Images.ContainsKey("dead")) ? "dead" : null;
                 try
@@ -300,7 +300,7 @@ DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
                 panel.AdjustMenu();  
                 panel.Pane.Refresh();
             }
-            else if(panel.inactive)
+            else if (panel.inactive && !controlText.EndsWith("TTY (inactive)"))
             {
                 panel.inactive = false;
                 panel.Icon = SuperPuTTY.GetIconForSession(panel.Session);                
