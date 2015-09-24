@@ -1614,5 +1614,50 @@ namespace SuperPutty
                 this.sessions.Instance.FocustxtSearch();
             }
         }
+
+        private void dockPanel1_ContentAdded(object sender, DockContentEventArgs e) {
+          TabWidthUpdate();
+        }
+
+        private void dockPanel1_ContentRemoved(object sender, DockContentEventArgs e) {
+          TabWidthUpdate();
+        }
+
+        private void TabWidthUpdate() {
+          if (SuperPuTTY.Settings.TabTextBehavior.Equals(frmSuperPutty.TabTextBehavior.Static.ToString()) && this.DockPanel.Contents.Count>0){
+            //calculate overall tab width
+            string s="1";
+            int n=0;
+            bool stripped = false;
+            for (int i = 0; i < this.DockPanel.Contents.Count; i++){
+              if (this.DockPanel.Contents[i] is SuperPutty.ctlPuttyPanel){
+                SuperPutty.ctlPuttyPanel p = (SuperPutty.ctlPuttyPanel)this.DockPanel.Contents[i];
+                s += p.ToolTipText;
+                if (p.TextOverride.EndsWith(">")) stripped = true;
+                n++;
+              }
+            }
+            Graphics g = Graphics.FromImage(new Bitmap(1, 1));
+            SizeF spx = g.MeasureString(s, this.DockPanel.Skin.DockPaneStripSkin.TextFont); //total tabs titles width in px
+            //modify tabs names if needed
+            if (spx.Width + n * 40 + 90 > this.DockPanel.Width || stripped){
+              Log.InfoFormat("Recalculating Tab Width: " + n);
+              float lpx = spx.Width / s.Length; //average letter width in px
+              int w = (int)(((this.DockPanel.Width - 90) / n - 40) / lpx); //max letters for tab text
+              if (w < 1) w = 1;
+
+              for (int i = 0; i < this.DockPanel.Contents.Count; i++){
+                if (this.DockPanel.Contents[i] is SuperPutty.ctlPuttyPanel){
+                  SuperPutty.ctlPuttyPanel p = (SuperPutty.ctlPuttyPanel)this.DockPanel.Contents[i];
+                  if (w >= p.ToolTipText.Length) p.TextOverride = p.ToolTipText;
+                  else p.TextOverride = w > 3 ? p.ToolTipText.Substring(0, w - 1) + ">" : p.ToolTipText.Substring(0, w);
+                  p.TabText = p.TextOverride;
+                }
+              }
+                    
+            }
+          }
+        }
+
     }
 }

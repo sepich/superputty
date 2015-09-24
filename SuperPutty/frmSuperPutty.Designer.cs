@@ -556,6 +556,8 @@
       this.dockPanel1.Skin = dockPanelSkin1;
       this.dockPanel1.TabIndex = 3;
       this.dockPanel1.ActiveAutoHideContentChanged += new System.EventHandler(this.dockPanel1_ActiveAutoHideContentChanged);
+      this.dockPanel1.ContentAdded += new System.EventHandler<WeifenLuo.WinFormsUI.Docking.DockContentEventArgs>(this.dockPanel1_ContentAdded);
+      this.dockPanel1.ContentRemoved += new System.EventHandler<WeifenLuo.WinFormsUI.Docking.DockContentEventArgs>(this.dockPanel1_ContentRemoved);
       this.dockPanel1.ActiveDocumentChanged += new System.EventHandler(this.dockPanel1_ActiveDocumentChanged);
       // 
       // toolStripContainer1
@@ -701,7 +703,7 @@
       this.tsConnect.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
       this.tsConnect.Location = new System.Drawing.Point(3, 49);
       this.tsConnect.Name = "tsConnect";
-      this.tsConnect.Size = new System.Drawing.Size(899, 25);
+      this.tsConnect.Size = new System.Drawing.Size(868, 25);
       this.tsConnect.TabIndex = 5;
       this.tsConnect.Text = "Connect";
       // 

@@ -65,6 +65,7 @@ namespace SuperPutty
 
             this.Text = session.SessionName;
             this.TabText = session.SessionName;
+            this.ToolTipText = session.SessionName;
             this.TextOverride = session.SessionName;
             this.inactive = false;
 
@@ -93,7 +94,7 @@ namespace SuperPutty
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
-            this.ToolTipText = this.Text;
+            //this.ToolTipText = this.Text;
         }
 
         private void CreatePanel()
@@ -415,6 +416,7 @@ namespace SuperPutty
             {
                 this.Text = dialog.ItemName;
                 this.TextOverride = dialog.ItemName;
+                this.ToolTipText = dialog.ItemName;
             }
         }
 
